@@ -14,5 +14,6 @@
 
     <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
+    <mapping resource="Profesor.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
