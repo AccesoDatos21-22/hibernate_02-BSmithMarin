@@ -11,7 +11,7 @@
     <property name="ape1" column="ape1"/>
     <property name="ape2" column="ape2"/>
 
-    <one-to-one name="direccion" cascade="all"/>
+    <one-to-one name="direccion" cascade="all" foreign-key="id_direccion"/>
 
     <list name="correos" cascade="all" inverse="true">
       <key>
@@ -21,8 +21,10 @@
       <one-to-many class="entidades.Correo"/>
     </list>
 
-    <set name="modulos" table="profesor_modulo" cascade="all" inverse="true">
-      <key></key>
+    <set name="modulos" table="profesor_modulo" cascade="all" inverse="true" >
+      <key>
+        <column name="id_profesor" />
+      </key>
       <many-to-many column="id_modulo" class="entidades.Modulo"/>
     </set>
 
