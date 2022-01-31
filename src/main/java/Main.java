@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tax = session.beginTransaction();
+        Transaction tax = session.getTransaction();
 
         Direccion direccion1 = new Direccion("P Castellana","Madrid","Madrid",23);
         Direccion direccion2 = new Direccion("C/Magnolias","Madrid","Madrid",96);
@@ -22,22 +22,24 @@ public class Main {
         Profesor profesor2 = new Profesor("Margarita","Robles","Martinez",direccion2);
 
         Correo correo1 = new Correo("profesor1@gmail.com","GMAIL");
-        Correo correo2 = new Correo("profesor1_empresa@outlook.com","OUTLOOK");
+        Correo correo2 = new Correo("aprofesor1_empresa@outlook.com","OUTLOOK");
 
         Modulo modulo1 = new Modulo("Sistemas Informaticos",1,6);
         Modulo modulo2 = new Modulo("Programacion II",2,12);
 
         try{
+            tax.begin();
+            profesor1.getModulos().add(modulo1);
+            profesor1.getModulos().add(modulo2);
 
-            Set<Modulo> modulos1 = profesor1.getModulos();  //Asignamos asignaturas al profesor
-            modulos1.addAll(Arrays.asList(modulo1,modulo2));
-            profesor1.setModulos(modulos1);
+            modulo1.getProfesores().add(profesor1);
+            modulo2.getProfesores().add(profesor1);
 
             profesor1.setCorreos(Arrays.asList(correo1,correo2)); //Ambos correos son del profesor 1
 
-            session.save(profesor1);  //Guadado de profesor y direccion
+            session.save(profesor1);  //Guadado de profesor y todos sus atributos
             session.save(profesor2);
-
+            tax.commit();
         }catch (Exception e){
             e.printStackTrace();
             if(tax.isActive())
@@ -49,6 +51,9 @@ public class Main {
         Session otraSession = HibernateUtil.getSessionFactory().openSession();
 
         try{
+
+            otraSession.getTransaction().begin();
+
             Profesor profesorInsertado = otraSession.get(Profesor.class,1);
             Modulo moduloInsertado = otraSession.get(Modulo.class,2);
             Correo correoInsertado = otraSession.get(Correo.class,1);
@@ -72,6 +77,8 @@ public class Main {
             System.out.println(profesorInsertado.getCorreos());
             System.out.println("Profesor del correo");
             System.out.println(correoInsertado.getProfesor());*/
+
+            otraSession.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -23,7 +23,6 @@ public class Correo implements Serializable {
                 "id=" + id +
                 ", direccion='" + direccion + '\'' +
                 ", proveedor='" + proveedor + '\'' +
-                ", profesor=" + profesor +
                 '}';
     }
 
