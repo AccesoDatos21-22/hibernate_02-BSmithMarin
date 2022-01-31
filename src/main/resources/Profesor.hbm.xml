@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
+  <hibernate-mapping>
+
   <class name="entidades.Profesor" table="profesor">
     <id column="id" name="id" type="integer">
       <generator class="identity"/>
     </id>
-    <property name="nombre"/>
-    <property name="ape1"/>
-    <property name="ape2"/>
+    <property name="nombre" column="nombre"/>
+    <property name="ape1" column="ape1"/>
+    <property name="ape2" column="ape2"/>
+
+    <one-to-one name="direccion" cascade="all"/>
+
+    <list name="correos" cascade="all" inverse="true">
+      <key>
+        <column name="id_profesor"/>
+      </key>
+      <index column="id"/>
+      <one-to-many class="entidades.Correo"/>
+    </list>
+
+    <set name="modulos" table="profesor_modulo" cascade="all" inverse="true">
+      <key></key>
+      <many-to-many column="id_modulo" class="entidades.Modulo"/>
+    </set>
+
   </class>
 </hibernate-mapping>
