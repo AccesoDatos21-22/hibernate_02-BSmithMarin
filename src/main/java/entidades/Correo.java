@@ -31,13 +31,17 @@ public class Correo implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Correo correo = (Correo) o;
-        return Objects.equals(direccion, correo.direccion) && Objects.equals(proveedor, correo.proveedor) && Objects.equals(profesor, correo.profesor);
+        return id == correo.id && Objects.equals(direccion, correo.direccion) && Objects.equals(proveedor, correo.proveedor);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, direccion, proveedor, profesor);
+    }
 
     public int getId() {
         return id;

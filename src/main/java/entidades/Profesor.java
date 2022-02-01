@@ -1,10 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 public class Profesor implements Serializable {
@@ -21,7 +18,7 @@ public class Profesor implements Serializable {
 
     private Set<Modulo> modulos = new HashSet<>();
 
-    private List<Correo> correos;
+    private List<Correo> correos = new ArrayList<>();
 
     public Profesor(){}
 
@@ -44,11 +41,11 @@ public class Profesor implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Profesor profesor = (Profesor) o;
-        return Objects.equals(nombre, profesor.nombre) && Objects.equals(ape1, profesor.ape1) && Objects.equals(ape2, profesor.ape2) && Objects.equals(direccion, profesor.direccion) && Objects.equals(modulos, profesor.modulos) && Objects.equals(correos, profesor.correos);
+        return Objects.equals(nombre, profesor.nombre) && Objects.equals(ape1, profesor.ape1) && Objects.equals(ape2, profesor.ape2);
     }
 
 

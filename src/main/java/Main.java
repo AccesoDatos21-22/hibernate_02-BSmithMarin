@@ -9,6 +9,12 @@ import util.HibernateUtil;
 import java.util.Arrays;
 
 public class Main {
+
+    /**
+     * Se crean objetos de los modelos, se insertan en la base de datos, y posteriormente
+     * se recuperan sus atributos para validar las relaciones entre entidades.
+     * @param args
+     */
     public static void main(String[] args) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -53,8 +59,6 @@ public class Main {
 
         try{
 
-            otraSession.getTransaction().begin();
-
             Profesor profesorInsertado = otraSession.get(Profesor.class,1);
             Modulo moduloInsertado = otraSession.get(Modulo.class,2);
             Correo correoInsertado = otraSession.get(Correo.class,1);
@@ -69,7 +73,7 @@ public class Main {
             System.out.println(profesorInsertado.getModulos());
             System.out.println(profesorInsertado.getDireccion());*/
 
-            System.out.println("Direccion del profesor: ************");
+            System.out.println("\nDireccion del profesor: ************");
             System.out.println(profesorInsertado.getDireccion() +"\n");
             System.out.println("Profesores por modulo: **************");
             System.out.println(moduloInsertado.getProfesores() +"\n");
@@ -80,7 +84,6 @@ public class Main {
             System.out.println("Profesor del correo ******************");
             System.out.println(correoInsertado.getProfesor() +"\n");
 
-            otraSession.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
         }
