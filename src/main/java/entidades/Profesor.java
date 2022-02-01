@@ -3,6 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -39,9 +40,17 @@ public class Profesor implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", ape1='" + ape1 + '\'' +
                 ", ape2='" + ape2 + '\'' +
-                ", direccion=" + direccion +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profesor profesor = (Profesor) o;
+        return Objects.equals(nombre, profesor.nombre) && Objects.equals(ape1, profesor.ape1) && Objects.equals(ape2, profesor.ape2) && Objects.equals(direccion, profesor.direccion) && Objects.equals(modulos, profesor.modulos) && Objects.equals(correos, profesor.correos);
+    }
+
 
     public int getId() {
         return id;

@@ -24,4 +24,9 @@ public class HibernateUtil {
         return sf;
     }
 
+    public static void closeSessionFactory(){
+        if(sf != null)
+            sf.close();
+    }
+
 }

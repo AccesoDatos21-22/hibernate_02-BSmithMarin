@@ -2,6 +2,7 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Modulo implements Serializable {
@@ -24,6 +25,15 @@ public class Modulo implements Serializable {
 
     public Modulo() {
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Modulo modulo = (Modulo) o;
+        return curso == modulo.curso && Float.compare(modulo.creditos, creditos) == 0 && Objects.equals(nombre, modulo.nombre) && Objects.equals(profesores, modulo.profesores);
+    }
+
 
     @Override
     public String toString() {

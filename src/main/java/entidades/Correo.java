@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Correo implements Serializable {
 
@@ -28,6 +29,15 @@ public class Correo implements Serializable {
 
     public Correo() {
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Correo correo = (Correo) o;
+        return Objects.equals(direccion, correo.direccion) && Objects.equals(proveedor, correo.proveedor) && Objects.equals(profesor, correo.profesor);
+    }
+
 
     public int getId() {
         return id;

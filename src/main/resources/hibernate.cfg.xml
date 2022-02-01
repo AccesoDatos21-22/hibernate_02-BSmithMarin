@@ -5,14 +5,14 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mariadb://localhost:3306/escuela</property>
+    <property name="connection.url">jdbc:mariadb://localhost:3306/profesor</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MariaDB103Dialect</property>
     <property name="show_sql">false</property>
     <property name="hibernate.format_sql">true</property>
 
-    <property name="hibernate.hbm2ddl.auto">create-drop</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
 
     <mapping resource="Profesor.hbm.xml"/>
     <mapping resource="Modulo.hbm.xml"/>

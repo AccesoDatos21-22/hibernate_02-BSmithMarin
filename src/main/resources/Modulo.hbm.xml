@@ -13,7 +13,7 @@
     <property name="creditos" column="creditos"/>
     <property name="curso" type="integer" column="curso"/>
 
-    <set name="profesores" table="profesor_modulo" cascade="all">
+    <set name="profesores" table="profesor_modulo" cascade="all" inverse="false">
       <key>
         <column name="id_modulo"/>
       </key>

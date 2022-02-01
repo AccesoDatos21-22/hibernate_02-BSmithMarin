@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Direccion implements Serializable {
 
@@ -22,6 +23,19 @@ public class Direccion implements Serializable {
         this.poblacion = poblacion;
         this.provincia = provincia;
         this.numero = numero;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direccion direccion = (Direccion) o;
+        return numero == direccion.numero && Objects.equals(calle, direccion.calle) && Objects.equals(poblacion, direccion.poblacion) && Objects.equals(provincia, direccion.provincia);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(calle, poblacion, provincia, numero);
     }
 
     @Override

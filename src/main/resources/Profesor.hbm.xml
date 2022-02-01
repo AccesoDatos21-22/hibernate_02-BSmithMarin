@@ -11,19 +11,18 @@
     <property name="ape1" column="ape1"/>
     <property name="ape2" column="ape2"/>
 
-    <one-to-one name="direccion" cascade="all" class="entidades.Direccion">
-
+    <one-to-one name="direccion" cascade="all" class="entidades.Direccion" foreign-key="direccion_id">
     </one-to-one>
 
-    <list name="correos" cascade="all" inverse="false">
+    <list name="correos" cascade="all" >
       <key>
         <column name="id_profesor"/>
       </key>
-      <list-index column="id"/>
+      <list-index column="email_index"/>
       <one-to-many class="entidades.Correo"/>
     </list>
 
-    <set name="modulos" table="profesor_modulo" cascade="all" inverse="true" >
+    <set name="modulos" table="profesor_modulo" cascade="all" inverse="false" >
       <key>
         <column name="id_profesor" />
       </key>
